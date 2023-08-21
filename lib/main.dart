@@ -33,6 +33,13 @@ class _MyHomePageState extends State<MyHomePage> {
   TextEditingController textController =
       MoneyMaskedTextController(decimalSeparator: '.', thousandSeparator: ',');
 
+  int replaceMaskedToIntForm(String og) {
+    String afterChanges = og;
+    afterChanges = afterChanges.replaceAll(',', '');
+    afterChanges = afterChanges.replaceAll('.', '');
+    return int.parse(afterChanges);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 width: 150,
                 child: FloatingActionButton(
                   onPressed: () {
-                    print(textController.text);
+                    print(replaceMaskedToIntForm(textController.text));
                   },
                   child: const Text('Print the value'),
                 ),
